@@ -23,11 +23,27 @@ s consist of only digits and English letters."""
 
 
 "#Solution"
+def palindrome(x):
+        if len(x) < 1:
+                return False
+        return x == x[:: -1]
 
-
-def longestPalindrome(s):
+def longestPalindrome(s:str):
         """
         :type s: str
         :rtype: str
         """
+        y = len(s)
+        x = []
+        for i in range(y):
+                for j in range(i+1, y):
+                        b = s[i:j+1]
+                        a = palindrome(b)
+                        if a:
+                                x.append(b)
+                        else:
+                                continue
+        return x
+
+# print(longestPalindrome('allen'))
         

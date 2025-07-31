@@ -57,10 +57,38 @@ s and words[i] consist of lowercase English letters.
 "#Solution"
 
 
-def findSubstring(s, words):
+from typing import List
+from collections import Counter
+
+
+
+def findSubstring(s:str, words:List[str])-> List[int]:
         """
         :type s: str
         :type words: List[str]
         :rtype: List[int]
         """
-        
+        word_l = len(words[0])
+        word_c = len(words)
+        words_length = word_l*word_c
+
+        if len(s)< words_length:
+                return []
+        word_counter = Counter(words)
+        # start = 0
+        result = []
+
+        for i in range(len(s)-words_length  + 1):
+                window = s[i:i+words_length]
+                words_length_counter = Counter()
+
+                for j in range(0,words_length,word_l):
+                        word = window[j:j+ word_l]
+                        words_length_counter[word] +=1
+
+                if word_counter == words_length_counter:
+                        result.append(i)
+        return result
+
+
+print(findSubstring('barfoofoobarthefoobarman'))   

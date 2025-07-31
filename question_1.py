@@ -50,9 +50,28 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].  """
 "#Solution"
 
 
-def romanToInt(s):
+def romanToInt(s:str)->int:
         """
         :type s: str
         :rtype: int
         """
+        romans = {'I':1, 'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        sum = 0
+        y = len(s)
+        x = 0
+
+        while x < y:
+                if x < y-1 and romans[s[x]] < romans[s[x +1]]: 
+                        sum += romans[s[x + 1]] - romans[s[x]]
+                        x +=2
+                else:
+                        sum += romans[s[x]]
+                        x +=1
+                
+                return sum
+        
+print(romanToInt('LX'))
+                
+                
+
         
